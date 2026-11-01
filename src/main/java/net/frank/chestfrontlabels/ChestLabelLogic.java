@@ -1,4 +1,4 @@
-package net.frank.chestlabels;
+package net.frank.chestfrontlabels;
 
 // Reine Regeln ohne laufendes Spiel: Text bereinigen und Schriftgröße auf der Truhenfront
 public final class ChestLabelLogic {

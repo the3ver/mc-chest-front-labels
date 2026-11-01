@@ -1,10 +1,10 @@
-package net.frank.chestlabels.client.mixin;
+package net.frank.chestfrontlabels.client.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.frank.chestlabels.ChestLabelLogic;
-import net.frank.chestlabels.ChestLabels;
-import net.frank.chestlabels.client.ChestLabelHolder;
+import net.frank.chestfrontlabels.ChestLabelLogic;
+import net.frank.chestfrontlabels.ChestLabels;
+import net.frank.chestfrontlabels.client.ChestLabelHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -42,14 +42,14 @@ public class ChestRendererMixin {
             at = @At("TAIL"))
     // Mixin verlangt alle Parameter der Zielmethode, auch ungenutzte
     @SuppressWarnings("UnusedVariable")
-    private void chestlabels$extractLabel(
+    private void chestfrontlabels$extractLabel(
             BlockEntity chest,
             ChestRenderState state,
             float partialTick,
             Vec3 cameraPos,
             ModelFeatureRenderer.CrumblingOverlay breakProgress,
             CallbackInfo ci) {
-        ((ChestLabelHolder) state).chestlabels$setLabel(chest.getAttached(ChestLabels.LABEL));
+        ((ChestLabelHolder) state).chestfrontlabels$setLabel(chest.getAttached(ChestLabels.LABEL));
     }
 
     @Inject(
@@ -58,13 +58,13 @@ public class ChestRendererMixin {
             at = @At("TAIL"))
     // Mixin verlangt alle Parameter der Zielmethode, auch ungenutzte
     @SuppressWarnings("UnusedVariable")
-    private void chestlabels$submitLabel(
+    private void chestfrontlabels$submitLabel(
             ChestRenderState state,
             PoseStack poseStack,
             SubmitNodeCollector collector,
             CameraRenderState camera,
             CallbackInfo ci) {
-        String label = ((ChestLabelHolder) state).chestlabels$getLabel();
+        String label = ((ChestLabelHolder) state).chestfrontlabels$getLabel();
         if (label == null || label.isEmpty()) return;
 
         Font font = Minecraft.getInstance().font;

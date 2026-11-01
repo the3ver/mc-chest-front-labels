@@ -8,7 +8,7 @@ loom {
 	splitEnvironmentSourceSets()
 
 	mods {
-		"chestlabels" {
+		"chest-front-labels" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}

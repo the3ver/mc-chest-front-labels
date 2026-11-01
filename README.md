@@ -1,4 +1,4 @@
-# Chest Labels
+# Chest Front Labels
 
 Kleine Fabric-Mod für Minecraft 26.3 mit genau einer Funktion: Truhen lassen sich wie Schilder beschriften.
 

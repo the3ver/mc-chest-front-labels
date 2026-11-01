@@ -1,4 +1,4 @@
-package net.frank.chestlabels;
+package net.frank.chestfrontlabels;
 
 import com.mojang.serialization.Codec;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
@@ -23,12 +23,12 @@ import net.minecraft.world.level.block.entity.ChestBlockEntity;
 public final class ChestLabels {
 
     public static final AttachmentType<String> LABEL = AttachmentRegistry.create(
-            ChestLabelsMod.id("label"),
+            ChestFrontLabelsMod.id("label"),
             builder -> builder.persistent(Codec.STRING)
                     .syncWith(ByteBufCodecs.STRING_UTF8, AttachmentSyncPredicate.all()));
 
     public record OpenEditorPayload(BlockPos pos, String label) implements CustomPacketPayload {
-        public static final Type<OpenEditorPayload> TYPE = new Type<>(ChestLabelsMod.id("open_editor"));
+        public static final Type<OpenEditorPayload> TYPE = new Type<>(ChestFrontLabelsMod.id("open_editor"));
         public static final StreamCodec<RegistryFriendlyByteBuf, OpenEditorPayload> CODEC = StreamCodec.composite(
                 BlockPos.STREAM_CODEC,
                 OpenEditorPayload::pos,
@@ -43,7 +43,7 @@ public final class ChestLabels {
     }
 
     public record SetLabelPayload(BlockPos pos, String label) implements CustomPacketPayload {
-        public static final Type<SetLabelPayload> TYPE = new Type<>(ChestLabelsMod.id("set_label"));
+        public static final Type<SetLabelPayload> TYPE = new Type<>(ChestFrontLabelsMod.id("set_label"));
         public static final StreamCodec<RegistryFriendlyByteBuf, SetLabelPayload> CODEC = StreamCodec.composite(
                 BlockPos.STREAM_CODEC,
                 SetLabelPayload::pos,

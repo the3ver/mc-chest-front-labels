@@ -1,10 +1,10 @@
-# Chest Labels – Agent Guidelines
+# Chest Front Labels – Agent Guidelines
 
 Fabric-Mod für Minecraft 26.3 (Java 25). Einzige Funktion: Truhen wie Schilder beschriften. Klein halten, keine weiteren Features ohne Auftrag.
 
 ## Aufbau
 - `ChestLabelLogic`: reine Regeln (Text bereinigen, Schriftgröße), unit-getestet.
-- `ChestLabels`: Attachment `chestlabels:label` am `ChestBlockEntity` (persistent, an alle Clients synchronisiert), Payloads, Schleichen-Rechtsklick.
+- `ChestLabels`: Attachment `chest-front-labels:label` am `ChestBlockEntity` (persistent, an alle Clients synchronisiert), Payloads, Schleichen-Rechtsklick.
 - Client: `ChestLabelScreen` (Eingabe), `mixin/ChestRendererMixin` zeichnet den Text. Klassen, die Mixins referenzieren (z. B. `ChestLabelHolder`), gehören nicht ins Mixin-Paket.
 
 ## Commands

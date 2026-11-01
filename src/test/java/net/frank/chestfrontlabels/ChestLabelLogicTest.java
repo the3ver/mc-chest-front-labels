@@ -1,4 +1,4 @@
-package net.frank.chestlabels;
+package net.frank.chestfrontlabels;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,9 +1,9 @@
-package net.frank.chestlabels.client;
+package net.frank.chestfrontlabels.client;
 
 // Von ChestRenderStateMixin an ChestRenderState angehängt: Beschriftung für den aktuellen Frame, null ohne Beschriftung
 public interface ChestLabelHolder {
 
-    String chestlabels$getLabel();
+    String chestfrontlabels$getLabel();
 
-    void chestlabels$setLabel(String label);
+    void chestfrontlabels$setLabel(String label);
 }

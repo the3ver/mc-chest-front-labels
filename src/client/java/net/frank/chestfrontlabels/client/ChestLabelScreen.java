@@ -1,8 +1,8 @@
-package net.frank.chestlabels.client;
+package net.frank.chestfrontlabels.client;
 
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.frank.chestlabels.ChestLabelLogic;
-import net.frank.chestlabels.ChestLabels;
+import net.frank.chestfrontlabels.ChestLabelLogic;
+import net.frank.chestfrontlabels.ChestLabels;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
@@ -20,7 +20,7 @@ public class ChestLabelScreen extends Screen {
     private EditBox labelBox;
 
     public ChestLabelScreen(BlockPos pos, String initialLabel) {
-        super(Component.translatable("screen.chestlabels.title"));
+        super(Component.translatable("screen.chest-front-labels.title"));
         this.pos = pos;
         this.initialLabel = initialLabel;
     }
@@ -33,7 +33,7 @@ public class ChestLabelScreen extends Screen {
         labelBox = new EditBox(font, centerX - 100, centerY - 10, 200, 20, title);
         labelBox.setMaxLength(ChestLabelLogic.MAX_LENGTH);
         labelBox.setValue(initialLabel);
-        labelBox.setHint(Component.translatable("screen.chestlabels.hint"));
+        labelBox.setHint(Component.translatable("screen.chest-front-labels.hint"));
         addRenderableWidget(labelBox);
 
         addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, button -> submit())
@@ -65,7 +65,7 @@ public class ChestLabelScreen extends Screen {
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
         graphics.centeredText(font, title, width / 2, height / 2 - 40, 0xFFFFFFFF);
         graphics.centeredText(
-                font, Component.translatable("screen.chestlabels.info"), width / 2, height / 2 - 26, 0xFFA0A0A0);
+                font, Component.translatable("screen.chest-front-labels.info"), width / 2, height / 2 - 26, 0xFFA0A0A0);
     }
 
     @Override

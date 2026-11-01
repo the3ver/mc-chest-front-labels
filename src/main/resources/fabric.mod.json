@@ -1,25 +1,28 @@
 {
 	"schemaVersion": 1,
-	"id": "chestlabels",
+	"id": "chest-front-labels",
 	"version": "${version}",
-	"name": "Chest Labels",
+	"name": "Chest Front Labels",
 	"description": "Beschriftet Truhen wie Schilder.",
 	"authors": [
 		"frank"
 	],
+	"contact": {
+		"sources": "https://github.com/the3ver/mc-chest-front-labels"
+	},
 	"license": "MIT",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.frank.chestlabels.ChestLabelsMod"
+			"net.frank.chestfrontlabels.ChestFrontLabelsMod"
 		],
 		"client": [
-			"net.frank.chestlabels.client.ChestLabelsClient"
+			"net.frank.chestfrontlabels.client.ChestFrontLabelsClient"
 		]
 	},
 	"mixins": [
 		{
-			"config": "chestlabels.client.mixins.json",
+			"config": "chest-front-labels.client.mixins.json",
 			"environment": "client"
 		}
 	],
