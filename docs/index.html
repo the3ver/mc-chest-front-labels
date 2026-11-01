@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chest Front Labels</title>
+  <meta name="description" content="Fabric-Mod für Minecraft 26.3: Truhen wie Schilder beschriften.">
+  <style>
+    :root {
+      --bg: #f6f1e7;
+      --surface: #fffaf0;
+      --text: #2b2118;
+      --muted: #6b5a48;
+      --accent: #8a5a2b;
+      --border: #e2d5bf;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #17130f;
+        --surface: #221c16;
+        --text: #f1e9dc;
+        --muted: #b3a38f;
+        --accent: #d79a5a;
+        --border: #3a3027;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    main { max-width: 760px; margin: 0 auto; padding: 48px 16px 64px; }
+    h1 { font-size: 2.2rem; line-height: 1.2; margin: 0 0 8px; }
+    h2 { font-size: 1.3rem; margin: 40px 0 12px; }
+    p.lead { color: var(--muted); margin: 0 0 24px; }
+    figure { margin: 0; }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      image-rendering: pixelated;
+    }
+    figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+    ol, ul { padding-left: 1.3em; }
+    li { margin: 4px 0; }
+    kbd {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0 6px;
+      font-size: 0.9em;
+    }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 0.9rem; margin-top: 48px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Chest Front Labels</h1>
+  <p class="lead">Fabric-Mod für Minecraft 26.3. Truhen lassen sich wie Schilder beschriften, der Text steht direkt auf der Front.</p>
+
+  <figure>
+    <img src="assets/truhen.png" width="854" height="480" alt="Einzeltruhe mit der Beschriftung Erze, Kohle und Doppeltruhe mit Holz, Stein und Glas">
+    <figcaption>Einzeltruhe und Doppeltruhe mit Beschriftung</figcaption>
+  </figure>
+
+  <h2>Beschriften</h2>
+  <ol>
+    <li>Beide Hände leer lassen.</li>
+    <li>Schleichen (<kbd>Shift</kbd>) und die Truhe rechtsklicken.</li>
+    <li>Text eingeben wie auf einem Schild: bis zu zwei Zeilen, <kbd>Enter</kbd> beginnt die zweite.</li>
+    <li>Mit <strong>Fertig</strong> bestätigen.</li>
+  </ol>
+
+  <figure>
+    <img src="assets/editor.png" width="854" height="480" alt="Eingabefenster mit zwei Zeilen Text und den Knöpfen Fertig und Abbrechen">
+    <figcaption>Das Eingabefenster</figcaption>
+  </figure>
+
+  <h2>Gut zu wissen</h2>
+  <ul>
+    <li>Eine Doppeltruhe hat eine gemeinsame, breitere Beschriftung.</li>
+    <li>Lange Texte brechen um und werden kleiner gezeichnet.</li>
+    <li>Leeren Text bestätigen entfernt die Beschriftung.</li>
+    <li>Gilt für Truhen und Fallentruhen, nicht für Endertruhen.</li>
+    <li>Die Beschriftung wird mit der Truhe gespeichert und alle Spieler sehen sie.</li>
+  </ul>
+
+  <h2>Installation</h2>
+  <ol>
+    <li><a href="https://fabricmc.net/use/">Fabric Loader</a> ab 0.20 für Minecraft 26.3 installieren.</li>
+    <li><a href="https://modrinth.com/mod/fabric-api">Fabric API</a> in den Ordner <code>mods</code> legen.</li>
+    <li>Die JAR von Chest Front Labels aus den <a href="https://github.com/the3ver/mc-chest-front-labels/releases">Releases</a> in denselben Ordner legen.</li>
+  </ol>
+  <p>Auf Servern muss die Mod auf dem Server und bei allen Spielern installiert sein.</p>
+
+  <footer>
+    <a href="https://github.com/the3ver/mc-chest-front-labels">Quellcode auf GitHub</a> · MIT-Lizenz
+  </footer>
+</main>
+</body>
+</html>

@@ -2,6 +2,8 @@
 
 Kleine Fabric-Mod für Minecraft 26.3 mit genau einer Funktion: Truhen lassen sich wie Schilder beschriften.
 
+Anleitung: https://the3ver.github.io/mc-chest-front-labels/
+
 ## Benutzung
 
 1. Mit leeren Händen schleichen und die Truhe rechtsklicken.
