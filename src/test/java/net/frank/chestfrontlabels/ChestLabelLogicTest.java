@@ -39,13 +39,16 @@ class ChestLabelLogicTest {
 
     @Test
     void shortTextUsesMaxScale() {
-        assertEquals(ChestLabelLogic.MAX_TEXT_SCALE, ChestLabelLogic.textScale(10));
-        assertEquals(ChestLabelLogic.MAX_TEXT_SCALE, ChestLabelLogic.textScale(0));
+        assertEquals(ChestLabelLogic.MAX_TEXT_SCALE, ChestLabelLogic.textScale(10, ChestLabelLogic.SINGLE_FRONT_WIDTH));
+        assertEquals(ChestLabelLogic.MAX_TEXT_SCALE, ChestLabelLogic.textScale(0, ChestLabelLogic.SINGLE_FRONT_WIDTH));
     }
 
     @Test
     void longTextShrinksToFrontWidth() {
         int width = 200;
-        assertEquals(ChestLabelLogic.FRONT_WIDTH, ChestLabelLogic.textScale(width) * width, 1e-6);
+        assertEquals(
+                ChestLabelLogic.SINGLE_FRONT_WIDTH,
+                ChestLabelLogic.textScale(width, ChestLabelLogic.SINGLE_FRONT_WIDTH) * width,
+                1e-6);
     }
 }

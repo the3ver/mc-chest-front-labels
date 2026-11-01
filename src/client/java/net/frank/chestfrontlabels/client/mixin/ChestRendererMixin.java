@@ -70,7 +70,7 @@ public class ChestRendererMixin {
         Font font = Minecraft.getInstance().font;
         FormattedCharSequence text = Component.literal(label).getVisualOrderText();
         int textWidth = font.width(text);
-        float scale = ChestLabelLogic.textScale(textWidth);
+        float scale = ChestLabelLogic.textScale(textWidth, ChestLabelLogic.SINGLE_FRONT_WIDTH);
 
         poseStack.pushPose();
         poseStack.translate(0.5f, 0.5f, 0.5f);

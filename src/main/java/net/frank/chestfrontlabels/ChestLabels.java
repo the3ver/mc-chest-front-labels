@@ -72,8 +72,7 @@ public final class ChestLabels {
             }
             if (player instanceof ServerPlayer serverPlayer
                     && ServerPlayNetworking.canSend(serverPlayer, OpenEditorPayload.TYPE)) {
-                String label = chest.getAttachedOrElse(LABEL, "");
-                ServerPlayNetworking.send(serverPlayer, new OpenEditorPayload(pos, label));
+                ServerPlayNetworking.send(serverPlayer, new OpenEditorPayload(pos, labelOf(chest)));
             }
             // Auf beiden Seiten SUCCESS, damit die Truhe nicht aufgeht
             return InteractionResult.SUCCESS;
@@ -92,7 +91,15 @@ public final class ChestLabels {
         if (!player.mayBuild() || !player.isWithinBlockInteractionRange(pos, 1.0)) return;
         if (!(player.level().getBlockEntity(pos) instanceof ChestBlockEntity chest)) return;
 
-        String label = ChestLabelLogic.sanitize(raw);
+        applyLabel(chest, ChestLabelLogic.sanitize(raw));
+    }
+
+    // Angezeigte Beschriftung, leer ohne Beschriftung
+    public static String labelOf(ChestBlockEntity chest) {
+        return chest.getAttachedOrElse(LABEL, "");
+    }
+
+    private static void applyLabel(ChestBlockEntity chest, String label) {
         if (label.isEmpty()) {
             chest.removeAttached(LABEL);
         } else {
