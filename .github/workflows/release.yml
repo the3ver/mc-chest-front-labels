@@ -1,4 +1,4 @@
-# GitHub Release mit JAR und Changelog-Auszug, ausgelöst durch einen Tag v* oder manuell für einen vorhandenen Tag
+# GitHub- und Modrinth-Release mit JAR und Changelog-Auszug, ausgelöst durch einen Tag v* oder manuell für einen vorhandenen Tag
 name: Publish Release
 
 on:
@@ -40,9 +40,29 @@ jobs:
         run: chmod +x gradlew && ./gradlew build
 
       - name: Release notes
-        run: pipx run git-cliff --current --strip header > notes.md
+        # Config immer von main, ältere Tags haben noch keine cliff.toml
+        run: |
+          git show origin/main:cliff.toml > cliff.toml
+          pipx run git-cliff --current --strip header > notes.md
+          echo "VERSION=${TAG#v}" >> "$GITHUB_ENV"
 
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$TAG" build/libs/chest-front-labels-*[0-9].jar --title "$TAG" --notes-file notes.md
+        run: |
+          gh release view "$TAG" > /dev/null 2>&1             || gh release create "$TAG" build/libs/chest-front-labels-*[0-9].jar --title "$TAG" --notes-file notes.md
+
+      - name: Publish to Modrinth
+        uses: Kira-NT/mc-publish@v3.3.2
+        with:
+          modrinth-id: iEgOJTb8
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          name: Chest Front Labels ${{ env.VERSION }}
+          version: ${{ env.VERSION }}
+          version-type: release
+          changelog-file: notes.md
+          files: build/libs/chest-front-labels-*[0-9].jar
+          loaders: fabric
+          game-versions: 26.3
+          java: Java 25
+          dependencies: fabric-api(required)
