@@ -11,6 +11,9 @@ Fabric-Mod für Minecraft 26.3 (Java 25). Einzige Funktion: Truhen wie Schilder 
 - `ChestLabels`: Attachment `chest-front-labels:label` am `ChestBlockEntity` (persistent, an alle Clients synchronisiert), Payloads, Schleichen-Rechtsklick.
 - Client: `ChestLabelScreen` (Eingabe), `mixin/ChestRendererMixin` zeichnet den Text. Klassen, die Mixins referenzieren (z. B. `ChestLabelHolder`), gehören nicht ins Mixin-Paket.
 
+## Git
+- `main` ist per Ruleset geschützt (`.github/rulesets/main.json`): nur per Pull Request, Check `build` muss grün sein. Auf einem Branch arbeiten, PR öffnen.
+
 ## Commands
 - Prüfen: `bash scripts/check.sh` (Format, Error Prone, NullAway, Tests; grün eine Zeile). Läuft als Stop-Hook.
 - Commit-Hook aktivieren: `git config core.hooksPath .githooks` (Conventional Commits).
