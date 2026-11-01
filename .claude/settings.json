@@ -1,7 +1,15 @@
 {
   "permissions": {
     "deny": [
-      "Read(./build/**)",
+      "Read(./build/classes/**)",
+      "Read(./build/libs/**)",
+      "Read(./build/tmp/**)",
+      "Read(./build/resources/**)",
+      "Read(./build/reports/**)",
+      "Read(./build/loom-cache/**)",
+      "Read(./build/run/*/saves/**)",
+      "Read(./build/run/*/resources/**)",
+      "Read(./build/run/*/logs/*.gz)",
       "Read(./.gradle/**)",
       "Read(./run/saves/**)",
       "Read(./run/resources/**)",
