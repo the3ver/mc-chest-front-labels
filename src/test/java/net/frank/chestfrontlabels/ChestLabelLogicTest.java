@@ -17,8 +17,7 @@ class ChestLabelLogicTest {
     }
 
     @Test
-    void nullAndBlankMeanRemove() {
-        assertEquals("", ChestLabelLogic.sanitize(null));
+    void blankMeansRemove() {
         assertEquals("", ChestLabelLogic.sanitize("   "));
     }
 
@@ -41,8 +40,7 @@ class ChestLabelLogicTest {
     void doubleChestPrefersLeftLabel() {
         assertEquals("Links", ChestLabelLogic.combine("Links", "Rechts"));
         assertEquals("Rechts", ChestLabelLogic.combine("", "Rechts"));
-        assertEquals("Rechts", ChestLabelLogic.combine(null, "Rechts"));
-        assertEquals("", ChestLabelLogic.combine(null, null));
+        assertEquals("", ChestLabelLogic.combine("", ""));
     }
 
     @Test

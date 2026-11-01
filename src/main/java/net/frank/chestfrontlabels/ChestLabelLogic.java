@@ -15,7 +15,6 @@ public final class ChestLabelLogic {
 
     // Entfernt Steuer- und Formatierungszeichen, kürzt auf MAX_LENGTH. Leerer Text heißt: Beschriftung entfernen.
     public static String sanitize(String raw) {
-        if (raw == null) return "";
         StringBuilder clean = new StringBuilder();
         // Formatierungscodes bestehen aus Paragraphenzeichen plus Codezeichen
         raw.replaceAll("§.?", "")
@@ -29,8 +28,7 @@ public final class ChestLabelLogic {
     // Eine Doppeltruhe hat eine Beschriftung. Haben beide Hälften eine (zwei beschriftete Truhen zusammengestellt),
     // gilt die der linken Hälfte.
     public static String combine(String left, String right) {
-        if (left != null && !left.isEmpty()) return left;
-        return right == null ? "" : right;
+        return left.isEmpty() ? right : left;
     }
 
     // Lange Texte werden kleiner, damit sie auf die Front passen
