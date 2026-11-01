@@ -4,7 +4,7 @@ Fabric-Mod für Minecraft 26.3 (Java 25). Einzige Funktion: Truhen wie Schilder 
 
 ## Arbeitsregeln
 - Kent Beck: erst die Änderung einfach machen (eigener `refactor:`-Commit, Tests grün), dann die einfache Änderung (`feat:`).
-- Matt Pocock: Maximum Conciseness. So wenig Code, Kommentare und Text wie möglich.
+- Matt Pocock: Maximum Conciseness in Antworten an Frank. Kürzest mögliche Antwort, nur Ergebnis und offene Punkte.
 
 ## Aufbau
 - `ChestLabelLogic`: reine Regeln (Text bereinigen, Schriftgröße), unit-getestet.
