@@ -1,0 +1,32 @@
+{
+	"schemaVersion": 1,
+	"id": "chestlabels",
+	"version": "${version}",
+	"name": "Chest Labels",
+	"description": "Beschriftet Truhen wie Schilder.",
+	"authors": [
+		"frank"
+	],
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.frank.chestlabels.ChestLabelsMod"
+		],
+		"client": [
+			"net.frank.chestlabels.client.ChestLabelsClient"
+		]
+	},
+	"mixins": [
+		{
+			"config": "chestlabels.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.20.0",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

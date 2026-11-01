@@ -1,0 +1,82 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'com.diffplug.spotless' version '8.10.4'
+	id 'net.ltgt.errorprone' version '5.1.1'
+}
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"chestlabels" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+
+	runs {
+		client {
+			// Fester Name = feste Offline-UUID, sonst gehört der Einzelspieler-Spielstand bei jedem Start einem neuen Spieler
+			programArgs "--username", "Frank"
+		}
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	testImplementation "org.junit.jupiter:junit-jupiter:6.1.3"
+	testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+
+	errorprone "com.google.errorprone:error_prone_core:2.51.0"
+}
+
+spotless {
+	java {
+		target 'src/*/java/**/*.java'
+		palantirJavaFormat()
+		removeUnusedImports()
+		endWithNewline()
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
+
+processResources {
+	def version = project.version
+	inputs.property "version", version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+	it.options.compilerArgs.add("-Werror")
+	it.options.errorprone {
+		// Mixin ruft @Inject-Methoden über Bytecode-Injektion auf
+		option("UnusedMethod:ExemptingMethodAnnotations", "org.spongepowered.asm.mixin.injection.Inject")
+	}
+}
+
+java {
+	withSourcesJar()
+
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(25)
+	}
+}
+
+jar {
+	def projectName = project.name
+	inputs.property "projectName", projectName
+
+	from("LICENSE") {
+		rename { "${it}_$projectName"}
+	}
+}
