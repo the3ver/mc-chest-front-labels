@@ -11,6 +11,7 @@
 		"sources": "https://github.com/the3ver/mc-chest-front-labels"
 	},
 	"license": "MIT",
+	"icon": "assets/chest-front-labels/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
