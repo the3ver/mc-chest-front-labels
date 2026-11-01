@@ -2,6 +2,7 @@ package net.frank.chestfrontlabels.client.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import java.util.List;
 import net.frank.chestfrontlabels.ChestLabelLogic;
 import net.frank.chestfrontlabels.ChestLabels;
 import net.frank.chestfrontlabels.client.ChestLabelHolder;
@@ -73,8 +74,8 @@ public class ChestRendererMixin {
         boolean isDouble = state.type == ChestType.LEFT;
 
         Font font = Minecraft.getInstance().font;
-        FormattedCharSequence text = Component.literal(label).getVisualOrderText();
-        int textWidth = font.width(text);
+        List<FormattedCharSequence> lines = List.of(Component.literal(label).getVisualOrderText());
+        int textWidth = lines.stream().mapToInt(font::width).max().orElse(0);
         float scale = ChestLabelLogic.textScale(
                 textWidth, isDouble ? ChestLabelLogic.DOUBLE_FRONT_WIDTH : ChestLabelLogic.SINGLE_FRONT_WIDTH);
 
@@ -85,17 +86,20 @@ public class ChestRendererMixin {
         // Die rechte Hälfte liegt von der linken aus bei -X (ChestBlock.getConnectedDirection: im Uhrzeigersinn)
         poseStack.translate(isDouble ? -0.5f : 0.0f, TEXT_CENTER_Y, FRONT_Z);
         poseStack.scale(scale, -scale, scale);
-        collector.submitText(
-                poseStack,
-                -textWidth / 2.0f,
-                -font.lineHeight / 2.0f,
-                text,
-                false,
-                Font.DisplayMode.POLYGON_OFFSET,
-                state.lightCoords,
-                TEXT_COLOR,
-                0,
-                0);
+        float top = -lines.size() * font.lineHeight / 2.0f;
+        for (int i = 0; i < lines.size(); i++) {
+            collector.submitText(
+                    poseStack,
+                    -font.width(lines.get(i)) / 2.0f,
+                    top + i * font.lineHeight,
+                    lines.get(i),
+                    false,
+                    Font.DisplayMode.POLYGON_OFFSET,
+                    state.lightCoords,
+                    TEXT_COLOR,
+                    0,
+                    0);
+        }
         poseStack.popPose();
     }
 }
