@@ -6,7 +6,20 @@ plugins {
 
 loom {
 	splitEnvironmentSourceSets()
+}
 
+// Client-Gametests in src/gametest: ./gradlew runClientGameTest startet einen echten Client und macht Screenshots
+fabricApi {
+	configureTests {
+		createSourceSet = true
+		modId = "chest-front-labels-gametest"
+		enableGameTests = false
+		enableClientGameTests = true
+		eula = true
+	}
+}
+
+loom {
 	mods {
 		"chest-front-labels" {
 			sourceSet sourceSets.main

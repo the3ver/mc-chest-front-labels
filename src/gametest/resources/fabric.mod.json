@@ -1,0 +1,11 @@
+{
+	"schemaVersion": 1,
+	"id": "chest-front-labels-gametest",
+	"version": "1.0.0",
+	"environment": "*",
+	"entrypoints": {
+		"fabric-client-gametest": [
+			"net.frank.chestfrontlabels.gametest.ChestLabelClientGameTest"
+		]
+	}
+}
