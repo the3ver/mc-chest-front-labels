@@ -3,6 +3,7 @@ package net.frank.chestfrontlabels.gametest;
 import net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest;
 import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
 import net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext;
+import net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions;
 import net.frank.chestfrontlabels.ChestLabels;
 import net.frank.chestfrontlabels.client.ChestLabelScreen;
 import net.minecraft.core.BlockPos;
@@ -32,7 +33,7 @@ public class ChestLabelClientGameTest implements FabricClientGameTest {
                 label(server.overworld(), DOUBLE_LEFT, "Holz, Stein und Glas");
                 label(server.overworld(), DOUBLE_RIGHT, "Holz, Stein und Glas");
             });
-            game.getServer().runCommand("tp @p 1.5 100 3.5 180 15");
+            game.getServer().runCommand("tp @p 2.0 100 2.8 180 30");
             context.runOnClient(client -> {
                 if (!client.gui.hud.isHidden()) client.gui.hud.toggle();
             });
@@ -46,7 +47,7 @@ public class ChestLabelClientGameTest implements FabricClientGameTest {
             if (!synced.equals("Erze\nKohle"))
                 throw new AssertionError("Beschriftung nicht am Client: '" + synced + "'");
 
-            context.takeScreenshot("chest-labels");
+            context.takeScreenshot(TestScreenshotOptions.of("chest-labels").withSize(1920, 1080));
 
             context.setScreen(() -> new ChestLabelScreen(SINGLE, "Erze\nKohle"));
             context.takeScreenshot("editor");
