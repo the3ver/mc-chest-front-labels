@@ -2,7 +2,10 @@
 	"required": true,
 	"package": "net.frank.chestlabels.client.mixin",
 	"compatibilityLevel": "JAVA_21",
-	"mixins": [],
+	"mixins": [
+		"ChestRenderStateMixin",
+		"ChestRendererMixin"
+	],
 	"injectors": {
 		"defaultRequire": 1
 	},

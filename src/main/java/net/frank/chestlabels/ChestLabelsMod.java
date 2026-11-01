@@ -12,5 +12,7 @@ public class ChestLabelsMod implements ModInitializer {
     }
 
     @Override
-    public void onInitialize() {}
+    public void onInitialize() {
+        ChestLabels.register();
+    }
 }
