@@ -25,3 +25,4 @@ gradlew text eol=lf
 *.jpg binary
 *.ico binary
 *.zip binary
+.githooks/* text eol=lf
