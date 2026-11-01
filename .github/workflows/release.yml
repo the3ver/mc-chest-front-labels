@@ -1,4 +1,4 @@
-# GitHub- und Modrinth-Release mit JAR und Changelog-Auszug, ausgelöst durch einen Tag v* oder manuell für einen vorhandenen Tag
+# GitHub-, Modrinth- und CurseForge-Release mit JAR und Changelog-Auszug, ausgelöst durch einen Tag v* oder manuell für einen vorhandenen Tag
 name: Publish Release
 
 on:
@@ -10,6 +10,11 @@ on:
       tag:
         description: 'Vorhandener Tag, z. B. v0.1.2'
         required: true
+      platforms:
+        description: 'Ziel neben GitHub'
+        type: choice
+        options: [all, modrinth, curseforge]
+        default: all
 
 permissions:
   contents: write
@@ -52,11 +57,14 @@ jobs:
         run: |
           gh release view "$TAG" > /dev/null 2>&1             || gh release create "$TAG" build/libs/chest-front-labels-*[0-9].jar --title "$TAG" --notes-file notes.md
 
-      - name: Publish to Modrinth
+      # Ohne ID und Token überspringt mc-publish die Plattform, manuell lässt sich so eine einzelne nachholen
+      - name: Publish to Modrinth and CurseForge
         uses: Kira-NT/mc-publish@v3.3.2
         with:
-          modrinth-id: iEgOJTb8
-          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          modrinth-id: ${{ inputs.platforms != 'curseforge' && 'iEgOJTb8' || '' }}
+          modrinth-token: ${{ inputs.platforms != 'curseforge' && secrets.MODRINTH_TOKEN || '' }}
+          curseforge-id: ${{ inputs.platforms != 'modrinth' && '1778400' || '' }}
+          curseforge-token: ${{ inputs.platforms != 'modrinth' && secrets.CURSEFORGE_TOKEN || '' }}
           name: Chest Front Labels ${{ env.VERSION }}
           version: ${{ env.VERSION }}
           version-type: release
