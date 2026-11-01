@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.blockentity.ChestRenderer;
 import net.minecraft.client.renderer.blockentity.state.ChestRenderState;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FormattedText;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
@@ -74,7 +74,9 @@ public class ChestRendererMixin {
         boolean isDouble = state.type == ChestType.LEFT;
 
         Font font = Minecraft.getInstance().font;
-        List<FormattedCharSequence> lines = List.of(Component.literal(label).getVisualOrderText());
+        List<FormattedCharSequence> lines = font.split(FormattedText.of(label), ChestLabelLogic.LINE_WIDTH_PX).stream()
+                .limit(ChestLabelLogic.MAX_LINES)
+                .toList();
         int textWidth = lines.stream().mapToInt(font::width).max().orElse(0);
         float scale = ChestLabelLogic.textScale(
                 textWidth, isDouble ? ChestLabelLogic.DOUBLE_FRONT_WIDTH : ChestLabelLogic.SINGLE_FRONT_WIDTH);

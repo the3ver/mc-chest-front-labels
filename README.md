@@ -5,7 +5,7 @@ Kleine Fabric-Mod für Minecraft 26.3 mit genau einer Funktion: Truhen lassen si
 ## Benutzung
 
 1. Mit leeren Händen schleichen und die Truhe rechtsklicken.
-2. Text eingeben (max. 24 Zeichen), mit Enter oder "Fertig" bestätigen.
+2. Text eingeben wie auf einem Schild: bis zu zwei Zeilen, Enter beginnt die zweite. Mit "Fertig" bestätigen.
 3. Der Text steht auf der Truhenfront unter dem Schloss. Lange Texte werden kleiner gezeichnet.
 
 Leeren Text bestätigen entfernt die Beschriftung. Gilt für normale Truhen und Fallentruhen. Eine Doppeltruhe hat eine gemeinsame, breitere Beschriftung über beide Hälften.

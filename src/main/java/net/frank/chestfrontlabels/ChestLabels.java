@@ -35,7 +35,7 @@ public final class ChestLabels {
         public static final StreamCodec<RegistryFriendlyByteBuf, OpenEditorPayload> CODEC = StreamCodec.composite(
                 BlockPos.STREAM_CODEC,
                 OpenEditorPayload::pos,
-                ByteBufCodecs.stringUtf8(ChestLabelLogic.MAX_LENGTH * 4),
+                ByteBufCodecs.stringUtf8(ChestLabelLogic.MAX_LINES * (ChestLabelLogic.MAX_LENGTH + 1) * 4),
                 OpenEditorPayload::label,
                 OpenEditorPayload::new);
 
@@ -50,7 +50,7 @@ public final class ChestLabels {
         public static final StreamCodec<RegistryFriendlyByteBuf, SetLabelPayload> CODEC = StreamCodec.composite(
                 BlockPos.STREAM_CODEC,
                 SetLabelPayload::pos,
-                ByteBufCodecs.stringUtf8(ChestLabelLogic.MAX_LENGTH * 4),
+                ByteBufCodecs.stringUtf8(ChestLabelLogic.MAX_LINES * (ChestLabelLogic.MAX_LENGTH + 1) * 4),
                 SetLabelPayload::label,
                 SetLabelPayload::new);
 

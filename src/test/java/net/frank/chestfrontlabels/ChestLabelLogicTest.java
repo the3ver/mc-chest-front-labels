@@ -37,6 +37,13 @@ class ChestLabelLogicTest {
     }
 
     @Test
+    void keepsTwoLinesAndDropsTheRest() {
+        assertEquals("Erze\nKohle", ChestLabelLogic.sanitize("Erze\nKohle\nEisen"));
+        assertEquals("\nUnten", ChestLabelLogic.sanitize("\nUnten"));
+        assertEquals("Oben", ChestLabelLogic.sanitize(" Oben \n  "));
+    }
+
+    @Test
     void doubleChestPrefersLeftLabel() {
         assertEquals("Links", ChestLabelLogic.combine("Links", "Rechts"));
         assertEquals("Rechts", ChestLabelLogic.combine("", "Rechts"));

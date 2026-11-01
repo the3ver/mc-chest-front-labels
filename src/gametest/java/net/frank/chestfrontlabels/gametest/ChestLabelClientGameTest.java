@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest;
 import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
 import net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext;
 import net.frank.chestfrontlabels.ChestLabels;
+import net.frank.chestfrontlabels.client.ChestLabelScreen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
@@ -27,9 +28,9 @@ public class ChestLabelClientGameTest implements FabricClientGameTest {
             game.getServer().runCommand("setblock 2 100 0 chest[facing=south,type=right]");
             game.getServer().runCommand("setblock 3 100 0 chest[facing=south,type=left]");
             game.getServer().runOnServer(server -> {
-                label(server.overworld(), SINGLE, "Erze");
-                label(server.overworld(), DOUBLE_LEFT, "Baumaterial");
-                label(server.overworld(), DOUBLE_RIGHT, "Baumaterial");
+                label(server.overworld(), SINGLE, "Erze\nKohle");
+                label(server.overworld(), DOUBLE_LEFT, "Holz, Stein und Glas");
+                label(server.overworld(), DOUBLE_RIGHT, "Holz, Stein und Glas");
             });
             game.getServer().runCommand("tp @p 1.5 100 3.5 180 15");
             context.runOnClient(client -> {
@@ -42,9 +43,13 @@ public class ChestLabelClientGameTest implements FabricClientGameTest {
                     game.getConnection().getClientLevel().getBlockEntity(SINGLE) instanceof ChestBlockEntity chest
                             ? ChestLabels.labelOf(chest)
                             : "");
-            if (!synced.equals("Erze")) throw new AssertionError("Beschriftung nicht am Client: '" + synced + "'");
+            if (!synced.equals("Erze\nKohle"))
+                throw new AssertionError("Beschriftung nicht am Client: '" + synced + "'");
 
             context.takeScreenshot("chest-labels");
+
+            context.setScreen(() -> new ChestLabelScreen(SINGLE, "Erze\nKohle"));
+            context.takeScreenshot("editor");
         }
     }
 
