@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Unique;
 public class ChestRenderStateMixin implements ChestLabelHolder {
 
     @Unique
-    private String chestfrontlabels$label;
+    private String chestfrontlabels$label = "";
 
     @Override
     public String chestfrontlabels$getLabel() {

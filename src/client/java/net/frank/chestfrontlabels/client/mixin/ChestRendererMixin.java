@@ -51,7 +51,7 @@ public class ChestRendererMixin {
             Vec3 cameraPos,
             ModelFeatureRenderer.CrumblingOverlay breakProgress,
             CallbackInfo ci) {
-        String label = chest instanceof ChestBlockEntity chestEntity ? ChestLabels.labelOf(chestEntity) : null;
+        String label = chest instanceof ChestBlockEntity chestEntity ? ChestLabels.labelOf(chestEntity) : "";
         ((ChestLabelHolder) state).chestfrontlabels$setLabel(label);
     }
 
@@ -69,7 +69,7 @@ public class ChestRendererMixin {
             CallbackInfo ci) {
         String label = ((ChestLabelHolder) state).chestfrontlabels$getLabel();
         // Doppeltruhe: die linke Hälfte zeichnet die gemeinsame Beschriftung mittig über beide Hälften
-        if (label == null || label.isEmpty() || state.type == ChestType.RIGHT) return;
+        if (label.isEmpty() || state.type == ChestType.RIGHT) return;
         boolean isDouble = state.type == ChestType.LEFT;
 
         Font font = Minecraft.getInstance().font;
