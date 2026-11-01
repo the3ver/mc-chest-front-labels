@@ -61,7 +61,10 @@ jobs:
           version: ${{ env.VERSION }}
           version-type: release
           changelog-file: notes.md
-          files: build/libs/chest-front-labels-*[0-9].jar
+          # Erste Datei ist die Haupt-JAR, die Sources-JAR wird Zusatzdatei
+          files: |
+            build/libs/chest-front-labels-*[0-9].jar
+            build/libs/chest-front-labels-*-sources.jar
           loaders: fabric
           game-versions: 26.3
           java: Java 25
