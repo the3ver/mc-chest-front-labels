@@ -15,6 +15,8 @@ import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.ChestBlockEntity;
+import net.minecraft.world.level.block.state.properties.ChestType;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -49,7 +51,8 @@ public class ChestRendererMixin {
             Vec3 cameraPos,
             ModelFeatureRenderer.CrumblingOverlay breakProgress,
             CallbackInfo ci) {
-        ((ChestLabelHolder) state).chestfrontlabels$setLabel(chest.getAttached(ChestLabels.LABEL));
+        String label = chest instanceof ChestBlockEntity chestEntity ? ChestLabels.labelOf(chestEntity) : null;
+        ((ChestLabelHolder) state).chestfrontlabels$setLabel(label);
     }
 
     @Inject(
@@ -65,18 +68,22 @@ public class ChestRendererMixin {
             CameraRenderState camera,
             CallbackInfo ci) {
         String label = ((ChestLabelHolder) state).chestfrontlabels$getLabel();
-        if (label == null || label.isEmpty()) return;
+        // Doppeltruhe: die linke Hälfte zeichnet die gemeinsame Beschriftung mittig über beide Hälften
+        if (label == null || label.isEmpty() || state.type == ChestType.RIGHT) return;
+        boolean isDouble = state.type == ChestType.LEFT;
 
         Font font = Minecraft.getInstance().font;
         FormattedCharSequence text = Component.literal(label).getVisualOrderText();
         int textWidth = font.width(text);
-        float scale = ChestLabelLogic.textScale(textWidth, ChestLabelLogic.SINGLE_FRONT_WIDTH);
+        float scale = ChestLabelLogic.textScale(
+                textWidth, isDouble ? ChestLabelLogic.DOUBLE_FRONT_WIDTH : ChestLabelLogic.SINGLE_FRONT_WIDTH);
 
         poseStack.pushPose();
         poseStack.translate(0.5f, 0.5f, 0.5f);
         // Danach zeigt +Z zur Truhenfront (SOUTH = 0°)
         poseStack.rotateDegrees(Axis.YP, -state.facing.toYRot());
-        poseStack.translate(0.0f, TEXT_CENTER_Y, FRONT_Z);
+        // Die rechte Hälfte liegt von der linken aus bei -X (ChestBlock.getConnectedDirection: im Uhrzeigersinn)
+        poseStack.translate(isDouble ? -0.5f : 0.0f, TEXT_CENTER_Y, FRONT_Z);
         poseStack.scale(scale, -scale, scale);
         collector.submitText(
                 poseStack,

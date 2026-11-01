@@ -8,6 +8,8 @@ public final class ChestLabelLogic {
     public static final float MAX_TEXT_SCALE = 1.0f / 80.0f;
     // Nutzbare Breite einer einzelnen Truhenfront in Blöcken (Front ist 14/16 breit, je 1/16 Rand)
     public static final float SINGLE_FRONT_WIDTH = 12.0f / 16.0f;
+    // Doppeltruhe: Front 30/16 breit, je 1/16 Rand
+    public static final float DOUBLE_FRONT_WIDTH = 28.0f / 16.0f;
 
     private ChestLabelLogic() {}
 
@@ -22,6 +24,13 @@ public final class ChestLabelLogic {
                 .limit(MAX_LENGTH)
                 .forEach(clean::appendCodePoint);
         return clean.toString().strip();
+    }
+
+    // Eine Doppeltruhe hat eine Beschriftung. Haben beide Hälften eine (zwei beschriftete Truhen zusammengestellt),
+    // gilt die der linken Hälfte.
+    public static String combine(String left, String right) {
+        if (left != null && !left.isEmpty()) return left;
+        return right == null ? "" : right;
     }
 
     // Lange Texte werden kleiner, damit sie auf die Front passen

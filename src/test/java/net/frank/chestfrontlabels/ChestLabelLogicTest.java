@@ -38,6 +38,25 @@ class ChestLabelLogicTest {
     }
 
     @Test
+    void doubleChestPrefersLeftLabel() {
+        assertEquals("Links", ChestLabelLogic.combine("Links", "Rechts"));
+        assertEquals("Rechts", ChestLabelLogic.combine("", "Rechts"));
+        assertEquals("Rechts", ChestLabelLogic.combine(null, "Rechts"));
+        assertEquals("", ChestLabelLogic.combine(null, null));
+    }
+
+    @Test
+    void doubleFrontFitsLongerTextAtSameScale() {
+        int width = 100;
+        assertEquals(
+                ChestLabelLogic.MAX_TEXT_SCALE, ChestLabelLogic.textScale(width, ChestLabelLogic.DOUBLE_FRONT_WIDTH));
+        assertEquals(
+                ChestLabelLogic.SINGLE_FRONT_WIDTH,
+                ChestLabelLogic.textScale(width, ChestLabelLogic.SINGLE_FRONT_WIDTH) * width,
+                1e-6);
+    }
+
+    @Test
     void shortTextUsesMaxScale() {
         assertEquals(ChestLabelLogic.MAX_TEXT_SCALE, ChestLabelLogic.textScale(10, ChestLabelLogic.SINGLE_FRONT_WIDTH));
         assertEquals(ChestLabelLogic.MAX_TEXT_SCALE, ChestLabelLogic.textScale(0, ChestLabelLogic.SINGLE_FRONT_WIDTH));
