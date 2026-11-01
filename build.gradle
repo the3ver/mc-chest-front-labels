@@ -31,6 +31,7 @@ dependencies {
 	testRuntimeOnly "org.junit.platform:junit-platform-launcher"
 
 	errorprone "com.google.errorprone:error_prone_core:2.51.0"
+	errorprone "com.uber.nullaway:nullaway:0.14.3"
 }
 
 spotless {
@@ -59,6 +60,10 @@ tasks.withType(JavaCompile).configureEach {
 	it.options.release = 25
 	it.options.compilerArgs.add("-Werror")
 	it.options.errorprone {
+		error("NullAway")
+		option("NullAway:AnnotatedPackages", "net.frank")
+		// Screens bauen ihre Widgets in init(), nicht im Konstruktor
+		option("NullAway:KnownInitializers", "net.minecraft.client.gui.screens.Screen.init")
 		// Mixin ruft @Inject-Methoden über Bytecode-Injektion auf
 		option("UnusedMethod:ExemptingMethodAnnotations", "org.spongepowered.asm.mixin.injection.Inject")
 	}
