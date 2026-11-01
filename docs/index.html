@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,51 +55,117 @@
     }
     a { color: var(--accent); }
     footer { color: var(--muted); font-size: 0.9rem; margin-top: 48px; }
+    html[data-lang="de"] main [lang="en"], html[data-lang="en"] main [lang="de"] { display: none; }
+    .lang { float: right; display: flex; gap: 4px; }
+    .lang button {
+      font: inherit;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 10px;
+      cursor: pointer;
+    }
+    html[data-lang="de"] .lang [data-set="de"], html[data-lang="en"] .lang [data-set="en"] {
+      color: var(--text);
+      border-color: var(--accent);
+    }
   </style>
 </head>
 <body>
 <main>
+  <div class="lang" role="group" aria-label="Sprache / Language">
+    <button type="button" data-set="de">DE</button>
+    <button type="button" data-set="en">EN</button>
+  </div>
   <h1>Chest Front Labels</h1>
-  <p class="lead">Fabric-Mod für Minecraft 26.3. Truhen lassen sich wie Schilder beschriften, der Text steht direkt auf der Front.</p>
+  <p class="lead" lang="de">Fabric-Mod für Minecraft 26.3. Truhen lassen sich wie Schilder beschriften, der Text steht direkt auf der Front.</p>
+  <p class="lead" lang="en">Fabric mod for Minecraft 26.3. Label your chests like signs, the text sits right on the chest front.</p>
 
   <figure>
-    <img src="assets/truhen.png" width="1920" height="1080" alt="Einzeltruhe mit der Beschriftung Erze, Kohle und Doppeltruhe mit Holz, Stein und Glas">
-    <figcaption>Einzeltruhe und Doppeltruhe mit Beschriftung</figcaption>
+    <img src="assets/truhen.png" width="1920" height="1080" alt="">
+    <figcaption lang="de">Einzeltruhe und Doppeltruhe mit Beschriftung</figcaption>
+    <figcaption lang="en">Labeled single and double chest</figcaption>
   </figure>
 
-  <h2>Beschriften</h2>
-  <ol>
-    <li>Beide Hände leer lassen.</li>
-    <li>Schleichen (<kbd>Shift</kbd>) und die Truhe rechtsklicken.</li>
-    <li>Text eingeben wie auf einem Schild: bis zu zwei Zeilen, <kbd>Enter</kbd> beginnt die zweite.</li>
-    <li>Mit <strong>Fertig</strong> bestätigen.</li>
-  </ol>
+  <section lang="de">
+    <h2>Beschriften</h2>
+    <ol>
+      <li>Beide Hände leer lassen.</li>
+      <li>Schleichen (<kbd>Shift</kbd>) und die Truhe rechtsklicken.</li>
+      <li>Text eingeben wie auf einem Schild: bis zu zwei Zeilen, <kbd>Enter</kbd> beginnt die zweite.</li>
+      <li>Mit <strong>Fertig</strong> bestätigen.</li>
+    </ol>
+  </section>
+  <section lang="en">
+    <h2>How to use</h2>
+    <ol>
+      <li>Keep both hands empty.</li>
+      <li>Sneak (<kbd>Shift</kbd>) and right-click a chest.</li>
+      <li>Type your label like on a sign: up to two lines, <kbd>Enter</kbd> starts the second line.</li>
+      <li>Click <strong>Done</strong>.</li>
+    </ol>
+  </section>
 
   <figure>
-    <img src="assets/editor.png" width="854" height="480" alt="Eingabefenster mit zwei Zeilen Text und den Knöpfen Fertig und Abbrechen">
-    <figcaption>Das Eingabefenster</figcaption>
+    <img src="assets/editor.png" width="854" height="480" alt="">
+    <figcaption lang="de">Das Eingabefenster</figcaption>
+    <figcaption lang="en">The label editor</figcaption>
   </figure>
 
-  <h2>Gut zu wissen</h2>
-  <ul>
-    <li>Eine Doppeltruhe hat eine gemeinsame, breitere Beschriftung.</li>
-    <li>Lange Texte brechen um und werden kleiner gezeichnet.</li>
-    <li>Leeren Text bestätigen entfernt die Beschriftung.</li>
-    <li>Gilt für Truhen und Fallentruhen, nicht für Endertruhen.</li>
-    <li>Die Beschriftung wird mit der Truhe gespeichert und alle Spieler sehen sie.</li>
-  </ul>
+  <section lang="de">
+    <h2>Gut zu wissen</h2>
+    <ul>
+      <li>Eine Doppeltruhe hat eine gemeinsame, breitere Beschriftung.</li>
+      <li>Lange Texte brechen um und werden kleiner gezeichnet.</li>
+      <li>Leeren Text bestätigen entfernt die Beschriftung.</li>
+      <li>Gilt für Truhen und Fallentruhen, nicht für Endertruhen.</li>
+      <li>Die Beschriftung wird mit der Truhe gespeichert und alle Spieler sehen sie.</li>
+    </ul>
 
-  <h2>Installation</h2>
-  <ol>
-    <li><a href="https://fabricmc.net/use/">Fabric Loader</a> ab 0.20 für Minecraft 26.3 installieren.</li>
-    <li><a href="https://modrinth.com/mod/fabric-api">Fabric API</a> in den Ordner <code>mods</code> legen.</li>
-    <li>Die JAR von Chest Front Labels aus den <a href="https://github.com/the3ver/mc-chest-front-labels/releases">Releases</a> in denselben Ordner legen.</li>
-  </ol>
-  <p>Auf Servern muss die Mod auf dem Server und bei allen Spielern installiert sein.</p>
+    <h2>Installation</h2>
+    <ol>
+      <li><a href="https://fabricmc.net/use/">Fabric Loader</a> ab 0.20 für Minecraft 26.3 installieren.</li>
+      <li><a href="https://modrinth.com/mod/fabric-api">Fabric API</a> in den Ordner <code>mods</code> legen.</li>
+      <li>Die JAR von Chest Front Labels aus den <a href="https://github.com/the3ver/mc-chest-front-labels/releases">Releases</a> in denselben Ordner legen.</li>
+    </ol>
+    <p>Auf Servern muss die Mod auf dem Server und bei allen Spielern installiert sein.</p>
+  </section>
+  <section lang="en">
+    <h2>Good to know</h2>
+    <ul>
+      <li>Double chests get one shared, wider label.</li>
+      <li>Long text wraps and is drawn smaller.</li>
+      <li>Confirm an empty text to remove the label.</li>
+      <li>Works on chests and trapped chests, not on ender chests.</li>
+      <li>Labels are saved with the chest and shown to every player.</li>
+    </ul>
+
+    <h2>Installation</h2>
+    <ol>
+      <li>Install <a href="https://fabricmc.net/use/">Fabric Loader</a> 0.20+ for Minecraft 26.3.</li>
+      <li>Put <a href="https://modrinth.com/mod/fabric-api">Fabric API</a> into the <code>mods</code> folder.</li>
+      <li>Put the Chest Front Labels JAR from the <a href="https://github.com/the3ver/mc-chest-front-labels/releases">releases</a> into the same folder.</li>
+    </ol>
+    <p>On servers, install the mod on the server and on every client.</p>
+  </section>
 
   <footer>
-    <a href="https://github.com/the3ver/mc-chest-front-labels">Quellcode auf GitHub</a> · MIT-Lizenz
+    <a href="https://github.com/the3ver/mc-chest-front-labels"><span lang="de">Quellcode auf GitHub</span><span lang="en">Source on GitHub</span></a> · <span lang="de">MIT-Lizenz</span><span lang="en">MIT license</span>
   </footer>
 </main>
+<script>
+  // Sprache: gespeicherte Wahl, sonst Browsersprache
+  function setLang(lang) {
+    document.documentElement.dataset.lang = lang;
+    document.documentElement.lang = lang;
+    try { localStorage.setItem("lang", lang); } catch (e) {}
+  }
+  let saved = null;
+  try { saved = localStorage.getItem("lang"); } catch (e) {}
+  setLang(saved || (navigator.language.startsWith("de") ? "de" : "en"));
+  document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.set)));
+</script>
 </body>
 </html>
