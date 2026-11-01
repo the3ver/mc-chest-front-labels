@@ -17,4 +17,4 @@ Fabric-Mod für Minecraft 26.3 (Java 25). Einzige Funktion: Truhen wie Schilder 
 - Formatieren: `./gradlew spotlessApply`
 - Client-Gametest: `./gradlew runClientGameTest` (ca. 30 s, öffnet ein Fenster). Screenshot: `build/run/clientGameTest/screenshots/`.
 - Client: `./gradlew runClient`. Mixin-Fehler zeigen sich erst beim Start im Log.
-- Version steht nur in `gradle.properties`.
+- Version steht nur in `gradle.properties`. Nach dem Erhöhen: Tag `v<version>` auf den Commit, dann `uvx git-cliff -o CHANGELOG.md` (nur `feat`/`fix`).
