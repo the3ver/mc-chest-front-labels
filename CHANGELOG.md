@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.3 (2026-11-06)
+
+### Neu
+- label button in the chest screen
+
 ## 0.1.2 (2026-11-01)
 
 ### Neu
