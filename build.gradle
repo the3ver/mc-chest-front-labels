@@ -1,7 +1,7 @@
 plugins {
 	id 'net.fabricmc.fabric-loom' version "${loom_version}"
 	id 'com.diffplug.spotless' version '8.10.4'
-	id 'net.ltgt.errorprone' version '5.1.1'
+	id 'net.ltgt.errorprone' version '5.2.0'
 }
 
 loom {
