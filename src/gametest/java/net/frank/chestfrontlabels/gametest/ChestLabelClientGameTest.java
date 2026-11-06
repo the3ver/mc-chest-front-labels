@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContex
 import net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions;
 import net.frank.chestfrontlabels.ChestLabels;
 import net.frank.chestfrontlabels.client.ChestLabelScreen;
+import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
@@ -51,6 +52,16 @@ public class ChestLabelClientGameTest implements FabricClientGameTest {
 
             context.setScreen(() -> new ChestLabelScreen(SINGLE, "Erze\nKohle"));
             context.takeScreenshot("editor");
+
+            // Truhe normal öffnen, dann über den Knopf in der Truhenansicht zum Editor
+            context.setScreen(() -> null);
+            game.getServer().runCommand("tp @p 0.5 100 2.5 180 31");
+            context.waitTicks(5);
+            context.getInput().pressKey(options -> options.keyUse);
+            context.waitForScreen(ContainerScreen.class);
+            context.takeScreenshot("chest-screen");
+            context.clickScreenButton("screen.chest-front-labels.button");
+            context.waitForScreen(ChestLabelScreen.class);
         }
     }
 
