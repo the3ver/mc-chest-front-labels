@@ -12,5 +12,6 @@ public class ChestFrontLabelsClient implements ClientModInitializer {
                 ChestLabels.OpenEditorPayload.TYPE,
                 (payload, context) ->
                         context.client().gui.setScreen(new ChestLabelScreen(payload.pos(), payload.label())));
+        ChestScreenButton.register();
     }
 }
