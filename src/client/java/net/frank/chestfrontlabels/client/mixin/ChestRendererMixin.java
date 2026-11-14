@@ -97,7 +97,7 @@ public class ChestRendererMixin {
                     state.lightCoords,
                     ChestLabelLogic.TEXT_COLOR,
                     0,
-                    0);
+                    ChestLabelLogic.OUTLINE_COLOR);
         }
         poseStack.popPose();
     }
