@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4 (2026-11-14)
+
+### Neu
+- light label text with dark outline for better contrast
+
 ## 0.1.3 (2026-11-06)
 
 ### Neu
