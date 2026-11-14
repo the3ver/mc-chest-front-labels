@@ -1,6 +1,7 @@
 package net.frank.chestfrontlabels;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -74,5 +75,27 @@ class ChestLabelLogicTest {
                 ChestLabelLogic.SINGLE_FRONT_WIDTH,
                 ChestLabelLogic.textScale(width, ChestLabelLogic.SINGLE_FRONT_WIDTH) * width,
                 1e-6);
+    }
+
+    // Die Kontur trennt die Schrift vom hellen und dunklen Holz der Truhe (WCAG-Kontrast mindestens 7:1)
+    @Test
+    void outlineContrastsWithText() {
+        double ratio = contrast(ChestLabelLogic.TEXT_COLOR, ChestLabelLogic.OUTLINE_COLOR);
+        assertTrue(ratio >= 7, "Kontrast " + ratio);
+    }
+
+    private static double contrast(int a, int b) {
+        double la = luminance(a);
+        double lb = luminance(b);
+        return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+    }
+
+    private static double luminance(int argb) {
+        return 0.2126 * channel(argb >> 16) + 0.7152 * channel(argb >> 8) + 0.0722 * channel(argb);
+    }
+
+    private static double channel(int value) {
+        double c = (value & 0xFF) / 255.0;
+        return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
     }
 }
