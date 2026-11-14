@@ -36,9 +36,6 @@ public class ChestRendererMixin {
     @Unique
     private static final float TEXT_CENTER_Y = 4.0f / 16.0f - 0.5f;
 
-    @Unique
-    private static final int TEXT_COLOR = 0xFF000000;
-
     @Inject(
             method =
                     "extractRenderState(Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/client/renderer/blockentity/state/ChestRenderState;FLnet/minecraft/world/phys/Vec3;Lnet/minecraft/client/renderer/feature/ModelFeatureRenderer$CrumblingOverlay;)V",
@@ -98,7 +95,7 @@ public class ChestRendererMixin {
                     false,
                     Font.DisplayMode.POLYGON_OFFSET,
                     state.lightCoords,
-                    TEXT_COLOR,
+                    ChestLabelLogic.TEXT_COLOR,
                     0,
                     0);
         }

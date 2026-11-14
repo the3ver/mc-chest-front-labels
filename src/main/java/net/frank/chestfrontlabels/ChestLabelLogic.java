@@ -17,6 +17,8 @@ public final class ChestLabelLogic {
     public static final float SINGLE_FRONT_WIDTH = 12.0f / 16.0f;
     // Doppeltruhe: Front 30/16 breit, je 1/16 Rand
     public static final float DOUBLE_FRONT_WIDTH = 28.0f / 16.0f;
+    // Schriftfarbe als ARGB
+    public static final int TEXT_COLOR = 0xFF000000;
 
     private ChestLabelLogic() {}
 
